@@ -1,7 +1,13 @@
 #include "Paw.h"
 
-Paw::Paw(int lowPos, int highPos, int servoPin, int solenoidPin): _solenoidPin(solenoidPin), low(lowPos), high(highPos) {
-  servo.attach(servoPin);
+Paw::Paw(int lowPos, int highPos, int servoPin, int solenoidPin): _servoPin(servoPin), _solenoidPin(solenoidPin), low(lowPos), high(highPos) {
+  
+}
+
+void Paw::setup(){
+  servo.attach(_servoPin);
+  pinMode(_servoPin, OUTPUT);
+  pinMode(_solenoidPin, OUTPUT);
 }
 
 void Paw::setAngle(int degrees){

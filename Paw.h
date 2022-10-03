@@ -9,6 +9,7 @@
 class Paw{
   public:
     Paw(int lowPos, int highPos, int servoPin, int solenoidPin);
+    void setup();
     void setAngle(int degrees); // Turns Paw
     void playNote(Note note); 
     
@@ -19,6 +20,7 @@ class Paw{
     int high;
   private:
     Servo servo;
+    int _servoPin;
     int _solenoidPin;
 };
 
