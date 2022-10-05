@@ -1,7 +1,14 @@
 #include "Paw.h"
 
-Paw::Paw(int lowPos, int highPos, int servoPin, int hammerPin): _hammerPin(hammerPin), _servoPin(servoPin), low(lowPos), high(highPos) {
+Paw::Paw(int lowPos, int highPos, int servoPin, int hammerPin): _hammerPin(hammerPin), _servoPin(servoPin), low(lowPos), high(highPos, enum notes) {
+  //lists of angles for each note
+  //TODO : fill in this enum with angles per note. 
+  
+}
 
+void Paw::goToNote(String note){
+    //somehow convert string to check if matches enum value or check enum name to match string ????????????
+    //servo.write(REPLACE WITH A NOTE VALUE FROM NOTES ENUM E.G. G2)
 }
 
 void Paw::setup(){
