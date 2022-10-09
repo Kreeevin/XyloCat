@@ -17,10 +17,13 @@ void setup() {
 void loop() {
   /* Process for loop():
    *  - Read serial (bufferToNote)
-   *    - paw[note.whichPaw].playNote(note);
+   *    - paw[note.whichPaw].goToNote(note);
    */
-   paw[0].setAngle(90);
+   paw[1].hammerUp();
+   paw[1].setAngle(90);
+   paw[1].printPositions();
    delay(1000);
-   paw[0].setAngle(60);
+   paw[1].setAngle(60);
+   paw[1].printPositions();
    delay(1000);
 }

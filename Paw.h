@@ -13,7 +13,7 @@ class Paw{
     
     void setAngle(int degrees); // Turns Paw
     void hammerDown(); // Actuates Mallet; Non-blocking, going down triggers interrupt to raise
-    void hammerUp(int degrees = 60);
+    void hammerUp(int degrees = 90);
 
     void printPositions();
     void setup(int* positions);
