@@ -17,12 +17,12 @@ typedef enum NoteName{
 typedef struct Note{
   NoteName noteName; // Will correlate to position
   int velocity;
-  int duration;
-  
+  int whichPaw;
 };
 
-inline byteToNoteName(byte note){
-  // Figure this out later
+inline NoteName byteToNoteName(byte note){
+  int transpose = 68; // adjust this later
+  return (NoteName) (note-transpose);
 };
 
 // function for converting MIDI info from serial buffer to Note
@@ -30,9 +30,9 @@ inline byteToNoteName(byte note){
 inline Note bufferToNote(byte* buf){
   //buf[0] is pitch, [1] is velocity
   Note theNote;
-  theNote.noteName = byteToNoteName[0];
+  theNote.noteName = byteToNoteName(buf[0]);
   theNote.velocity = buf[1];
-  theNote.duration = buf[2];
+  // Add functionality for whichPaw
   return theNote;
 };
 

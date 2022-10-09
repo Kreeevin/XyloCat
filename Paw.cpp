@@ -18,16 +18,22 @@ void Paw::setup(int* positions){
   pinMode(_hammerPin, OUTPUT);
   noteToServoPos = positions;
 }
+
+void Paw::printPositions(){
+  Serial.print(servo.read());
+  Serial.print(" ");
+  Serial.print(hammer.read());
+  Serial.print("\n");
+}
+
 void Paw::setAngle(int degrees){
   servo.write(degrees);
 }
 
 void Paw::hammerDown(){
-  //digitalWrite(_solenoidPin, HIGH);
-  hammer.write(high);
+  hammer.write(downPos);
 }
 
-void Paw::hammerUp(){
-  //digitalWrite(_solenoidPin, LOW);
-  hammer.write(low);
+void Paw::hammerUp(int pos){
+  hammer.write(pos);
 }
