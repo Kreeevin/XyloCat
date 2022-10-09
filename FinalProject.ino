@@ -3,6 +3,7 @@
 Paw leftPaw(2,4,true);
 Paw rightPaw(13, 8, false);
 Paw paw[] = {leftPaw, rightPaw};
+byte buff[2];
 
 void setup() {
   // put your setup code here, to run once:
@@ -15,19 +16,14 @@ void setup() {
 }
 
 void loop() {
-  /* Process for loop():
-   *  - Read serial (bufferToNote)
-   *    - paw[note.whichPaw].goToNote(note);
-   */
-   for(int i = 0; i < 7; i = (i+1)%7){
-     Note note;
-     note.noteName = i;
-     note.velocity = 100;
-     for(int j = 0; j < 2; j++)
-      paw[j].goToNote(note);
-     delay(500);
-     for(int j = 0; j < 2; j++)
-      paw[j].hammerDown();
-     delay(750);
-   }
+  
+  if(Serial.available() > 1){
+    buff[0] = Serial.read();
+    buff[1] = Serial.read();
+    Note note = bufferToNote(buff);
+    if(note.velocity != 0)
+      paw[note.whichPaw].goToNote(note);
+    else
+      paw[note.whichPaw].hammerDown();
+  }
 }

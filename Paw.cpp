@@ -19,6 +19,8 @@ void Paw::setup(int* positions){
   hammer.attach(_hammerPin);
   pinMode(_hammerPin, OUTPUT);
   noteToServoPos = positions;
+  servo.write(90);
+  hammer.write(90);
 }
 
 void Paw::printPositions(){

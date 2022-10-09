@@ -21,13 +21,12 @@ typedef struct Note{
 };
 
 inline NoteName byteToNoteName(byte note){
-  int transpose = 68; // adjust this later
-   //get the note name from the MIDI data
+  //get the note name from the MIDI data
   //Low: G4, High (possible): E5, High (on instrument): G6
   //note: C%12 = 0
   int remainder = note%12;
   
-  NoteName aNotename;
+  NoteName aNoteName;
   switch(remainder){
     case 0:
       aNoteName = C;
@@ -66,8 +65,6 @@ inline NoteName byteToNoteName(byte note){
       aNoteName = B;
       break;
   }
-  
-  //return (NoteName) (note-transpose);
   return aNoteName;
 };
 
@@ -83,7 +80,7 @@ inline Note bufferToNote(byte* buf){
   }
   theNote.noteName = byteToNoteName(buf[0]);
   theNote.velocity = buf[1];
-  // Add functionality for whichPaw
+  
   return theNote;
 };
 
