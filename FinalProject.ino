@@ -1,13 +1,13 @@
 #include "Paw.h"
 
-Paw leftPaw(2,4);
-Paw rightPaw(13, 8);
+Paw leftPaw(2,4,true);
+Paw rightPaw(13, 8, false);
 Paw paw[] = {leftPaw, rightPaw};
 
 void setup() {
   // put your setup code here, to run once:
-  int leftPositions[] = {0,0,0,0,0,0,0};
-  int rightPositions[] = {0,0,0,0,0,0,0};
+  int leftPositions[] = {52,60,70,80,95,99,112};
+  int rightPositions[] = {65,75,85,95,107,115,135};
   paw[0].setup(leftPositions);
   paw[1].setup(rightPositions);
 
@@ -19,11 +19,15 @@ void loop() {
    *  - Read serial (bufferToNote)
    *    - paw[note.whichPaw].goToNote(note);
    */
-   paw[1].hammerUp();
-   paw[1].setAngle(90);
-   paw[1].printPositions();
-   delay(1000);
-   paw[1].setAngle(60);
-   paw[1].printPositions();
-   delay(1000);
+   for(int i = 0; i < 7; i = (i+1)%7){
+     Note note;
+     note.noteName = i;
+     note.velocity = 100;
+     for(int j = 0; j < 2; j++)
+      paw[j].goToNote(note);
+     delay(500);
+     for(int j = 0; j < 2; j++)
+      paw[j].hammerDown();
+     delay(750);
+   }
 }

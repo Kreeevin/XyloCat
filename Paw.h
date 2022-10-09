@@ -8,18 +8,18 @@
 
 class Paw{
   public:
-    Paw(int servoPin, int hammerPin);
+    Paw(int servoPin, int hammerPin, bool isLeft);
     void goToNote(Note note); 
     
     void setAngle(int degrees); // Turns Paw
     void hammerDown(); // Actuates Mallet; Non-blocking, going down triggers interrupt to raise
-    void hammerUp(int degrees = 90);
+    void hammerUp(int degrees);
 
     void printPositions();
     void setup(int* positions);
   private:
-    
-    int downPos = 60;
+    bool isLeft;
+    int downPos = isLeft? 48:120;
     Servo servo;
     Servo hammer;
     int* noteToServoPos;
