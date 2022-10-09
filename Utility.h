@@ -22,7 +22,53 @@ typedef struct Note{
 
 inline NoteName byteToNoteName(byte note){
   int transpose = 68; // adjust this later
-  return (NoteName) (note-transpose);
+   //get the note name from the MIDI data
+  //Low: G4, High (possible): E5, High (on instrument): G6
+  //note: C%12 = 0
+  int remainder = note%12;
+  
+  NoteName aNotename;
+  switch(remainder){
+    case 0:
+      aNoteName = C;
+      break;
+    case 1:
+      aNoteName = C;
+      break;
+    case 2:
+      aNoteName = D;
+      break;
+    case 3:
+      aNoteName = D;
+      break;
+    case 4:
+      aNoteName = E;
+      break;
+    case 5:
+      aNoteName = F;
+      break;
+    case 6:
+      aNoteName = F;
+      break;
+    case 7:
+      aNoteName = G;
+      break;
+    case 8:
+      aNoteName = G;
+      break;
+    case 9:
+      aNoteName = A;
+      break;
+    case 10:
+      aNoteName = A;
+      break;
+    case 11:
+      aNoteName = B;
+      break;
+  }
+  
+  //return (NoteName) (note-transpose);
+  return aNoteName;
 };
 
 // function for converting MIDI info from serial buffer to Note
@@ -30,6 +76,11 @@ inline NoteName byteToNoteName(byte note){
 inline Note bufferToNote(byte* buf){
   //buf[0] is pitch, [1] is velocity
   Note theNote;
+  if(buf[0] > 87){
+    theNote.whichPaw = 0;
+  }else{
+    theNote.whichPaw = 1;
+  }
   theNote.noteName = byteToNoteName(buf[0]);
   theNote.velocity = buf[1];
   // Add functionality for whichPaw
